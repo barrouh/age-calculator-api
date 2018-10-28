@@ -1,6 +1,6 @@
 package com.barrouh.agecalculatorapi;
 
-public enum Constants {
+public enum DateTypes {
 	
 	SECONDS("seconds"),
 	MINUTES("minutes"),
@@ -12,8 +12,12 @@ public enum Constants {
 
     private final String value;
 
-    Constants(final String value) {
+    DateTypes(final String value) {
         this.value = value;
+    }
+    
+    public static DateTypes getValueByName(String name) {
+        return DateTypes.valueOf(name.toLowerCase());
     }
    
     @Override
