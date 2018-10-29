@@ -21,6 +21,12 @@ public class DefaultController {
 	private AgeCalculator ageCalculator = new AgeCalculator();
 	
 	@ResponseBody
+	@GetMapping(value = "/", headers= "Accept=*/*")
+			public  String  getAgeGet() {
+			return "";
+	}
+	
+	@ResponseBody
 	@GetMapping(value = "getAge", 
 			    headers=    "Accept=*/*" ,
 			    produces =  MediaType.APPLICATION_JSON_VALUE )
@@ -38,9 +44,10 @@ public class DefaultController {
 			     headers="Accept=*/*" ,
 			     produces = MediaType.APPLICATION_JSON_VALUE )
 	@ResponseBody
-	public String getAgePost(@RequestParam(value = "birthdate", required = true) String birthdate , @RequestParam(value = "ageAtTheDateOf", required = false) String ageAtTheDateOf) {
-		LOGGER.info(birthdate);	
-		
-		return "";
+	public String getAgePost(@RequestParam(value = "birthdate", required = true) String birthdate , 
+			                 @RequestParam(value = "ageAtTheDateOf", required = false) String ageAtTheDateOf) {
+					LOGGER.info(birthdate);	
+					
+					return "";
 	}
 }

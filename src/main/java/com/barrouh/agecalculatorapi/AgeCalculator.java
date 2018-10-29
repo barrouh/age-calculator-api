@@ -7,6 +7,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class AgeCalculator {
 	
 	private Date birthdate;
@@ -15,6 +18,8 @@ public class AgeCalculator {
 	
 	private SimpleDateFormat dateFormat = 
 		new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss",Locale.ENGLISH);
+	
+	private static final Logger LOGGER = LogManager.getLogger(DefaultController.class);
 
 	public AgeCalculator() {
 		super();
@@ -46,7 +51,7 @@ public class AgeCalculator {
     	try {
 			return dateFormat.parse(date);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage(),e);
 			return null;
 		}
     }

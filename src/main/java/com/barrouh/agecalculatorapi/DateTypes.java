@@ -17,7 +17,7 @@ public enum DateTypes {
     }
     
     public static DateTypes getValueByName(String name) {
-        return DateTypes.valueOf(name.toLowerCase());
+        return DateTypes.valueOf(name.toUpperCase());
     }
    
     @Override

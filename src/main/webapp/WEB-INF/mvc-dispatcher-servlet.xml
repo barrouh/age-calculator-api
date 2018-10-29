@@ -10,6 +10,9 @@
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<context:component-scan base-package="com.barrouh.agecalculatorapi" />
+	
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
+	<mvc:resources mapping="/robots.txt" location="/robots.txt" />
 
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" />
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
