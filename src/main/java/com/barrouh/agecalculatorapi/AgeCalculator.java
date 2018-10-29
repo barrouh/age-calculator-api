@@ -3,9 +3,9 @@ package com.barrouh.agecalculatorapi;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class AgeCalculator {
 	
@@ -51,7 +51,7 @@ public class AgeCalculator {
 		}
     }
     
-    private String formatDate(Date date) {
+    public String formatDate(Date date) {
 			return dateFormat.format(date);
     }
 
@@ -105,7 +105,7 @@ public class AgeCalculator {
 	public Map<String, String> getFinalDateAsAll(String birthdate, String ageAtTheDateOf) {
 		this.birthdate = formatDate(checkStringDate(birthdate));
 		this.ageAtTheDateOf = formatDate(checkStringDate(ageAtTheDateOf));
-		Map<String, String> finalMap = new HashMap<String, String>();
+	    Map<String, String> finalMap = new TreeMap<>();
 		Long datesDifference=this.getDateDifference();
 		DateTypes[] dateTypes = orderDateTypes(DateTypes.values());
 		for(DateTypes dateType :  dateTypes) {
