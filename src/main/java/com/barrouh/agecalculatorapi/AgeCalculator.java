@@ -123,12 +123,6 @@ public class AgeCalculator {
 		return finalMap;
 	}
 	
-	public String getFinalResults(String birthdate, String ageAtTheDateOf, DateTypes dateAs) {
-		this.birthdate = formatDate(checkStringDate(birthdate));
-		this.ageAtTheDateOf = formatDate(checkStringDate(ageAtTheDateOf));
-		return getFinalDateAs(getDateDifference(),dateAs);
-	}
-	
 	public String getFinalResults(DateTypes dateAs) {
 		return getFinalDateAs(getDateDifference(),dateAs);
 	}

@@ -47,7 +47,11 @@ public class DefaultController {
 	public String getAgePost(@RequestParam(value = "birthdate", required = true) String birthdate , 
 			                 @RequestParam(value = "ageAtTheDateOf", required = false) String ageAtTheDateOf) {
 					LOGGER.info(birthdate);	
-					
-					return "";
+					if (ageAtTheDateOf==null){
+				    	ageAtTheDateOf=ageCalculator.formatDate(new Date());
+				    }
+				    LOGGER.info(ageAtTheDateOf);	
+					LOGGER.info(birthdate);
+				  return new Gson().toJson(ageCalculator.getFinalDateAsAll(birthdate,ageAtTheDateOf));
 	}
 }

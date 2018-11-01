@@ -8,13 +8,13 @@ public class TimeFormulaTest {
 
 	 @Test
 	   public void testDefaultValues() { 
-		  assertEquals(TimeFormula.SECONDS.toString(),"1000.0");
-	      assertEquals(TimeFormula.MINUTES.toString(),"60000.0");
-	      assertEquals(TimeFormula.HOURS.toString(),"3600000.0");
-	      assertEquals(TimeFormula.DAYS.toString(),"8.64E7");
-	      assertEquals(TimeFormula.WEEKS.toString(),"6.048E8");
-	      assertEquals(TimeFormula.MONTHS.toString(),"2.627856E9");
-	      assertEquals(TimeFormula.YEARS.toString(),"3.1534272E10");
+		  assertEquals("1000.0",TimeFormula.SECONDS.toString());
+	      assertEquals("60000.0",TimeFormula.MINUTES.toString());
+	      assertEquals("3600000.0",TimeFormula.HOURS.toString());
+	      assertEquals("8.64E7",TimeFormula.DAYS.toString());
+	      assertEquals("6.048E8",TimeFormula.WEEKS.toString());
+	      assertEquals("2.627856E9",TimeFormula.MONTHS.toString());
+	      assertEquals("3.1534272E10",TimeFormula.YEARS.toString());
 	 }
 	 
 	 @Test

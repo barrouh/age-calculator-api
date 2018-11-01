@@ -8,13 +8,13 @@ public class DateTypesTest {
 
 	 @Test
 	   public void testDefaultValues() {
-	      assertEquals(DateTypes.SECONDS.toString(),"seconds");
-	      assertEquals(DateTypes.MINUTES.toString(),"minutes");
-	      assertEquals(DateTypes.HOURS.toString(),"hours");
-	      assertEquals(DateTypes.DAYS.toString(),"days");
-	      assertEquals(DateTypes.WEEKS.toString(),"weeks");
-	      assertEquals(DateTypes.MONTHS.toString(),"months");
-	      assertEquals(DateTypes.YEARS.toString(),"years");
+	      assertEquals("seconds",DateTypes.SECONDS.toString());
+	      assertEquals("minutes",DateTypes.MINUTES.toString());
+	      assertEquals("hours",DateTypes.HOURS.toString());
+	      assertEquals("days",DateTypes.DAYS.toString());
+	      assertEquals("weeks",DateTypes.WEEKS.toString());
+	      assertEquals("months",DateTypes.MONTHS.toString());
+	      assertEquals("years",DateTypes.YEARS.toString());
 	   }
 	 
 	 @Test
