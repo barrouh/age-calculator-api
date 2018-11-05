@@ -16,7 +16,7 @@ public enum DateTypes {
         this.value = value;
     }
     
-    public static DateTypes getValueByName(String name) {
+	public static DateTypes getValueByName(String name) {
         return DateTypes.valueOf(name.toUpperCase());
     }
    

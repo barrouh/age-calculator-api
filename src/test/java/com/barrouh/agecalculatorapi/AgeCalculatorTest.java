@@ -24,6 +24,6 @@ public class AgeCalculatorTest {
 	   public void testGetFinalDateAs() {
 		ageCalculator=new AgeCalculator();
 		json = new Gson();
-		assertEquals("\"604800\"",json.toJson(ageCalculator.getFinalDateAs("20-10-2018","27-10-2018",DateTypes.SECONDS)).toString());
+		assertEquals("{\"seconds\":\"604800\"}",json.toJson(ageCalculator.getFinalDateAs("20-10-2018","27-10-2018",DateTypes.SECONDS)).toString());
 	}
 }
