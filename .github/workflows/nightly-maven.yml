@@ -1,4 +1,4 @@
-name: Java CI
+name: Java CI Nightly
 on:
   schedule:
     - cron:  '*/2 * * * *'
