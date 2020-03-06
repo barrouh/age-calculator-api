@@ -1,7 +1,7 @@
 name: Java CI Nightly
 on:
   schedule:
-    - cron:  '*/2 * * * *'
+    - cron:  '0 0 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
