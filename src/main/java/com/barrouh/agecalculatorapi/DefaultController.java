@@ -18,9 +18,10 @@ import com.google.gson.GsonBuilder;
 public class DefaultController {
 
 	static final Logger LOGGER = LogManager.getLogger(DefaultController.class);
+	
 	private AgeCalculator ageCalculator = new AgeCalculator();
+	
 	private Gson gsonResult = new GsonBuilder().setPrettyPrinting().create();
-	private String finalResponse="";
 
 	@ResponseBody
 	@GetMapping(value = "/", headers = "Accept=*/*")
@@ -40,11 +41,9 @@ public class DefaultController {
 		LOGGER.info(birthdate);
 
 		if (ageAs == null || ageAs.equalsIgnoreCase("all")) {
-			finalResponse = gsonResult.toJson(ageCalculator.getFinalDateAsAll(birthdate, ageAtTheDateOf));
-			return finalResponse;
+			return gsonResult.toJson(ageCalculator.getFinalDateAsAll(birthdate, ageAtTheDateOf));
 		} else {
-			finalResponse = gsonResult.toJson(ageCalculator.getFinalDateAs(birthdate, ageAtTheDateOf, DateTypes.getValueByName(ageAs)));
-			return finalResponse;			
+			return gsonResult.toJson(ageCalculator.getFinalDateAs(birthdate, ageAtTheDateOf, DateTypes.getValueByName(ageAs)));		
 		}
 	}
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 <!-- ================================ -->
 <!-- Log4j2 Configuration -->
 <!-- ================================ -->
@@ -8,7 +9,7 @@
 			<PatternLayout pattern="%d %p %t: %c{1}: %m%n" />
 		</Console> 
 		
-	    <RollingFile name="FILE" fileName="log/AgeCalculator.log" filePattern="AgeCalculator-%d{yyyy-MM-dd}.log" >
+	    <RollingFile name="FILE" fileName="target/log/AgeCalculator.log" filePattern="AgeCalculator-%d{yyyy-MM-dd}.log" >
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
 			<Policies>
 			<TimeBasedTriggeringPolicy />

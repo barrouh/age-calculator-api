@@ -13,8 +13,8 @@ public class TimeFormulaTest {
 	      assertEquals("3600000.0",TimeFormula.HOURS.toString());
 	      assertEquals("8.64E7",TimeFormula.DAYS.toString());
 	      assertEquals("6.048E8",TimeFormula.WEEKS.toString());
-	      assertEquals("2.627856E9",TimeFormula.MONTHS.toString());
-	      assertEquals("3.1534272E10",TimeFormula.YEARS.toString());
+	      assertEquals("2.627855872E9",TimeFormula.MONTHS.toString());
+	      assertEquals("3.1534270464E10",TimeFormula.YEARS.toString());
 	 }
 	 
 	 @Test

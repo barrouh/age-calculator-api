@@ -19,7 +19,7 @@ public class AgeCalculator {
 
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss", Locale.ENGLISH);
 
-	private static final Logger LOGGER = LogManager.getLogger(DefaultController.class);
+	private static final Logger LOGGER = LogManager.getLogger(AgeCalculator.class);
 
 	public AgeCalculator() {
 		super();
