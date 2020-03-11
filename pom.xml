@@ -11,7 +11,7 @@
 
 	<artifactId>age-calculator-api</artifactId>
 	<packaging>war</packaging>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.2-SNAPSHOT</version>
 
 	<name>Age Calculator Api</name>
 	<url>https://github.com/barrouh/age-calculator-api</url>
