@@ -22,71 +22,16 @@ public class AgeCalculator {
 	private static final Logger LOGGER = LogManager.getLogger(AgeCalculator.class);
 
 	public AgeCalculator() {
-		super();
 	}
 
 	public AgeCalculator(Date birthdate, Date ageAtTheDateOf) {
-		super();
 		this.birthdate = formatDate(formatDate(birthdate));
 		this.ageAtTheDateOf = formatDate(formatDate(ageAtTheDateOf));
 	}
 
-	public AgeCalculator(Date birthdate) {
-		super();
-		this.birthdate = formatDate(formatDate(birthdate));
-	}
-
 	public AgeCalculator(String birthdate, String ageAtTheDateOf) {
-		super();
-		this.birthdate = formatDate(birthdate);
-		this.ageAtTheDateOf = formatDate(ageAtTheDateOf);
-	}
-
-	public AgeCalculator(String birthdate) {
-		super();
-		this.birthdate = formatDate(birthdate);
-	}
-
-	public boolean isValidDate(String inDate) {
-		try {
-			if (inDate != null) {
-				dateFormat.parse(inDate.trim());
-			} else {
-				return false;
-			}
-		} catch (ParseException pe) {
-			return false;
-		}
-		return true;
-	}
-
-	private Date formatDate(String date) {
-		try {
-			return dateFormat.parse(date);
-		} catch (ParseException e) {
-			LOGGER.error(e.getMessage(), e);
-			return null;
-		}
-	}
-
-	public String formatDate(Date date) {
-		return dateFormat.format(date);
-	}
-
-	public Date getBirthdate() {
-		return birthdate;
-	}
-
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
-	}
-
-	public Date getAgeAtTheDateOf() {
-		return ageAtTheDateOf;
-	}
-
-	public void setAgeAtTheDateOf(Date ageAtTheDateOf) {
-		this.ageAtTheDateOf = ageAtTheDateOf;
+		this.birthdate = formatDate(checkStringDate(birthdate));
+		this.ageAtTheDateOf = formatDate(checkStringDate(ageAtTheDateOf));
 	}
 
 	private Long getDateDifference() {
@@ -124,23 +69,17 @@ public class AgeCalculator {
 		return result.toString();
 	}
 
-	public String getFinalDateAs(Date birthdate, Date ageAtTheDateOf, DateTypes dateAs) {
-		this.birthdate = formatDate(formatDate(birthdate));
-		this.ageAtTheDateOf = formatDate(formatDate(ageAtTheDateOf));
+	public String getFinalDateAs(DateTypes dateAs) {
 		return getFinalDateAs(getDateDifference(), dateAs);
 	}
 
-	public Map<String, String> getFinalDateAs(String birthdate, String ageAtTheDateOf, DateTypes dateAs) {
-		this.birthdate = formatDate(checkStringDate(birthdate));
-		this.ageAtTheDateOf = formatDate(checkStringDate(ageAtTheDateOf));
-		Map<String, String> finalMap = new TreeMap<>();
-		finalMap.put(dateAs.name().toLowerCase(), getFinalDateAs(getDateDifference(), dateAs));
+	public Map<String, String> getFinalDateAsJs(DateTypes dateAs) {
+		Map<String, String> finalMap = new TreeMap<>(new MapComparator());
+		finalMap.put(dateAs.toString(), getFinalDateAs(getDateDifference(), dateAs));
 		return finalMap;
 	}
 
-	public Map<String, String> getFinalDateAsAll(String birthdate, String ageAtTheDateOf) {
-		this.birthdate = formatDate(checkStringDate(birthdate));
-		this.ageAtTheDateOf = formatDate(checkStringDate(ageAtTheDateOf));
+	public Map<String, String> getFinalDateAsAll() {
 		Map<String, String> finalMap = new TreeMap<>(new MapComparator());
 		Long datesDifference = this.getDateDifference();
 		DateTypes[] dateTypes = orderDateTypes(DateTypes.values());
@@ -152,17 +91,6 @@ public class AgeCalculator {
 			datesDifference = temp;
 		}
 		return finalMap;
-	}
-
-	public String getFinalResults(DateTypes dateAs) {
-		return getFinalDateAs(getDateDifference(), dateAs);
-	}
-
-	private String checkStringDate(String date) {
-		if (date.length() <= 10)
-			return date + "-00-00-00";
-		else
-			return date;
 	}
 
 	private DateTypes[] orderDateTypes(DateTypes[] dateTypes) {
@@ -180,9 +108,67 @@ public class AgeCalculator {
 		return finalTable;
 	}
 
-}
-class MapComparator implements Comparator<String> {
-	  public int compare(String a, String b) {
-	   return 1 ;
-	  }
+	public boolean isValidDate(String inDate) {
+		try {
+			if (inDate != null) {
+				dateFormat.parse(inDate.trim());
+			} else {
+				return false;
+			}
+		} catch (ParseException pe) {
+			return false;
+		}
+		return true;
 	}
+
+	public Date formatDate(String date) {
+		try {
+			return dateFormat.parse(checkStringDate(date));
+		} catch (ParseException e) {
+			LOGGER.error(e.getMessage(), e);
+			return null;
+		}
+	}
+
+	public String formatDate(Date date) {
+		return dateFormat.format(date);
+	}
+
+	private String checkStringDate(String date) {
+		if (date.length() <= 10)
+			return date + "-00-00-00";
+		else
+			return date;
+	}
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
+	public Date getAgeAtTheDateOf() {
+		return ageAtTheDateOf;
+	}
+
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
+
+	public void setAgeAtTheDateOf(Date ageAtTheDateOf) {
+		this.ageAtTheDateOf = ageAtTheDateOf;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = formatDate(checkStringDate(birthdate));
+	}
+
+	public void setAgeAtTheDateOf(String ageAtTheDateOf) {
+		this.ageAtTheDateOf = formatDate(checkStringDate(ageAtTheDateOf));
+	}
+
+}
+
+class MapComparator implements Comparator<String> {
+	public int compare(String a, String b) {
+		return 1;
+	}
+}

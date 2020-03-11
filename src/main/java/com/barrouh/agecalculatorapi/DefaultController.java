@@ -1,7 +1,5 @@
 package com.barrouh.agecalculatorapi;
 
-import java.util.Date;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
@@ -18,14 +16,14 @@ import com.google.gson.GsonBuilder;
 public class DefaultController {
 
 	static final Logger LOGGER = LogManager.getLogger(DefaultController.class);
-	
+
 	private AgeCalculator ageCalculator = new AgeCalculator();
-	
-	private Gson gsonResult = new GsonBuilder().setPrettyPrinting().create();
+
+	private Gson gsonResult = new GsonBuilder().create();
 
 	@ResponseBody
 	@GetMapping(value = "/", headers = "Accept=*/*")
-	public String getAgeGet() {
+	public String home() {
 		return "";
 	}
 
@@ -34,16 +32,17 @@ public class DefaultController {
 	public String getAgeGet(@RequestParam(value = "birthdate", required = true) String birthdate,
 			@RequestParam(value = "ageAtTheDateOf", required = false) String ageAtTheDateOf,
 			@RequestParam(value = "ageAs", required = false) String ageAs) {
-		if (!ageCalculator.isValidDate(ageAtTheDateOf)) {
-			ageAtTheDateOf = ageCalculator.formatDate(new Date());
-		}
-		LOGGER.info(ageAtTheDateOf);
-		LOGGER.info(birthdate);
 
+		LOGGER.info(birthdate);
+		LOGGER.info(ageAtTheDateOf);
+
+		ageCalculator.setBirthdate(birthdate);
+		ageCalculator.setAgeAtTheDateOf(ageAtTheDateOf);
+		
 		if (ageAs == null || ageAs.equalsIgnoreCase("all")) {
-			return gsonResult.toJson(ageCalculator.getFinalDateAsAll(birthdate, ageAtTheDateOf));
+			return gsonResult.toJson(ageCalculator.getFinalDateAsAll());
 		} else {
-			return gsonResult.toJson(ageCalculator.getFinalDateAs(birthdate, ageAtTheDateOf, DateTypes.getValueByName(ageAs)));		
+			return gsonResult.toJson(ageCalculator.getFinalDateAs(DateTypes.getValueByName(ageAs)));
 		}
 	}
 
@@ -52,16 +51,17 @@ public class DefaultController {
 	public String getAgePost(@RequestParam(value = "birthdate", required = true) String birthdate,
 			@RequestParam(value = "ageAtTheDateOf", required = false) String ageAtTheDateOf,
 			@RequestParam(value = "ageAs", required = false) String ageAs) {
-		if (!ageCalculator.isValidDate(ageAtTheDateOf)) {
-			ageAtTheDateOf = ageCalculator.formatDate(new Date());
-		}
-		LOGGER.info(ageAtTheDateOf);
+
 		LOGGER.info(birthdate);
+		LOGGER.info(ageAtTheDateOf);
+
+		ageCalculator.setBirthdate(birthdate);
+		ageCalculator.setAgeAtTheDateOf(ageAtTheDateOf);
+		
 		if (ageAs == null || ageAs.equalsIgnoreCase("all")) {
-			return new Gson().toJson(ageCalculator.getFinalDateAsAll(birthdate, ageAtTheDateOf));
+			return new Gson().toJson(ageCalculator.getFinalDateAsAll());
 		} else {
-			return new Gson()
-					.toJson(ageCalculator.getFinalDateAs(birthdate, ageAtTheDateOf, DateTypes.getValueByName(ageAs)));
+			return new Gson().toJson(ageCalculator.getFinalDateAs(DateTypes.getValueByName(ageAs)));
 		}
 	}
 }
