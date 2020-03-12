@@ -44,7 +44,6 @@ public class AgeCalculatorTest {
 		ageCalculator.setBirthdate("20-10-2018");
 		ageCalculator.setAgeAtTheDateOf("27-10-2018");
 		assertEquals("604800", ageCalculator.getFinalDateAs(DateTypes.SECONDS).toString());
-		//assertEquals("604800", ageCalculator.getFinalDateAs(null).toString());
 	}
 
 	@Test

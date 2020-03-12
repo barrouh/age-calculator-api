@@ -39,7 +39,7 @@ public class DefaultController {
 		ageCalculator.setBirthdate(birthdate);
 		ageCalculator.setAgeAtTheDateOf(ageAtTheDateOf);
 		
-		if (ageAs == null || ageAs.equalsIgnoreCase("all")) {
+		if (ageAs.equalsIgnoreCase("all")) {
 			return gsonResult.toJson(ageCalculator.getFinalDateAsAll());
 		} else {
 			return gsonResult.toJson(ageCalculator.getFinalDateAs(DateTypes.getValueByName(ageAs)));
@@ -58,7 +58,7 @@ public class DefaultController {
 		ageCalculator.setBirthdate(birthdate);
 		ageCalculator.setAgeAtTheDateOf(ageAtTheDateOf);
 		
-		if (ageAs == null || ageAs.equalsIgnoreCase("all")) {
+		if (ageAs.equalsIgnoreCase("all")) {
 			return new Gson().toJson(ageCalculator.getFinalDateAsAll());
 		} else {
 			return new Gson().toJson(ageCalculator.getFinalDateAs(DateTypes.getValueByName(ageAs)));
